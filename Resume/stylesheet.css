@@ -1,0 +1,122 @@
+#header {
+		z-index: 1;
+		position: fixed;
+		width: 98.5%;
+		margin-top: 5px;
+		height: 60px;
+		border: 2px dashed #D05A00;
+		margin-bottom: 10px;
+}
+
+.right {
+		position: relative;
+		float: right;
+		margin-top: 80px;
+		width: 100%;
+		height: 90%;
+		margin-bottom: 10px;
+		border: 2px dashed blue;
+}
+
+#footer {
+		position:relative;
+		height: 50px;
+		clear: both;
+		font-family: Verdana;
+		font-size: 36px;
+		text-align: center;
+		padding-left: 15px;
+		border: 2px dashed #B83C3A;
+}
+
+body {
+		background-color: #FEFFF8; // Near white
+}
+
+h4 {
+		font-family: Verdana;
+		text-decoration: underline;
+		color: #B83C3A;
+		padding-left: 5px;
+		padding-bottom: -50px;
+		text-align: left;
+}
+
+h5 {
+		font-family: Verdana;
+		padding-left: 15px;
+}
+
+ul {
+		padding-top: -20px;
+		font-family: monospace;
+		font-size: 12px;
+}
+
+li {
+		padding-top: -20px;
+		list-style: square;
+}
+
+
+/* Make all boxes round. */
+div {
+		border-radius: 5px;
+}
+
+/* Makes the email text look like the rest of the text. */
+#email {
+		font-family: Garamond, serif;
+		font-size: 10;
+		color: #000000;
+}
+
+/* Generally all the details in bullet form. */
+.right p {
+		margin-left: 5px;
+		margin-right: 5px;
+		margin-top: -10px;
+		font-family: Garamond, serif;
+		font-size: 10;
+		color: #000000;
+}
+
+/* Underline the contact information. */
+#Information p {
+		text-decoration: underline;
+}
+
+/* Stack the information. */
+#Information {
+		float: top;
+}
+
+#Education {
+		float: top;
+}
+
+#Experience {
+		float: top;
+}
+
+#Skills {
+		float: top;
+}
+
+/* Github Link */
+#Portfolio : link {
+		text-decoration: none;
+		color: blue;
+}
+
+#Portfolio : visited {
+		text-decoration: line-through;
+		color: purple;
+}
+
+#Portfolio : hover {
+		text-decoration: blink;
+		color: red;
+}
+
+
