@@ -1,7 +1,7 @@
 <?php require_once("includes/connection.php"); ?>
 <?php require_once("includes/functions.php"); ?>
 <?php
-		if (intval($_GET['subj']) == 0) {
+		if (intval($_GET['page']) == 0) {
 			redirect_to("content.php");
 		}
 		if (isset($_POST['submit'])) {
@@ -22,12 +22,12 @@
 			
 			if (empty($errors)) {
 				// Perform Update
-				$id = mysql_prep($_GET['subj']);
+				$id = mysql_prep($_GET['page']);
 				$menu_name = mysql_prep($_POST['menu_name']);
 				$position = mysql_prep($_POST['position']);
 				$visible = mysql_prep($_POST['visible']);
 				
-				$query = "UPDATE subjects SET 
+				$query = "UPDATE pages SET 
 							menu_name = '{$menu_name}', 
 							position = {$position}, 
 							visible = {$visible} 
@@ -58,7 +58,7 @@
 			<?php echo navigation($sel_subject, $sel_page); ?>
 		</td>
 		<td id="page">
-			<h2>Edit Subject: <?php echo $sel_subject['menu_name']; ?></h2>
+      <h2>Edit Page: <?php echo $sel_page['menu_name']; ?></h2>
       <?php 
         if (!empty($message)) {
           echo "<p class=\message\">" . $message . "</p>";
@@ -76,9 +76,9 @@
         }
       ?>
 
-			<form action="edit_subject.php?subj=<?php echo urlencode($sel_subject['id']); ?>" method="post">
-				<p>Subject name: 
-					<input type="text" name="menu_name" value="<?php echo $sel_subject['menu_name']; ?>" id="menu_name" />
+			<form action="edit_page.php?page=<?php echo urlencode($sel_page['id']); ?>" method="post">
+				<p>Page name: 
+					<input type="text" name="menu_name" value="<?php echo $sel_page['menu_name']; ?>" id="menu_name" />
 				</p>
 				<p>Position: 
 					<select name="position">
@@ -98,25 +98,20 @@
 				</p>
 				<p>Visible: 
 					<input type="radio" name="visible" value="0"<?php 
-					if ($sel_subject['visible'] == 0) { echo " checked"; } 
+					if ($sel_page['visible'] == 0) { echo " checked"; } 
 					?> /> No
 					&nbsp;
 					<input type="radio" name="visible" value="1"<?php 
-					if ($sel_subject['visible'] == 1) { echo " checked"; } 
+					if ($sel_page['visible'] == 1) { echo " checked"; } 
 					?> /> Yes
 				</p>
-				<input type="submit" name="submit" value="Edit Subject" />
+				<input type="submit" name="submit" value="Edit Page" />
         &nbsp;&nbsp;
 
-        <a href="delete_subject.php?subj=<?php echo
-            urlencode($sel_subject['id']); ?>"
+        <a href="delete_page.php?page=<?php echo
+            urlencode($sel_page['id']); ?>"
             onclick="return confirm('Are you sure?');"
-          >Delete Subject</a>
-
-        <a href="new_page.php?subj=<?php echo 
-          urlencode($sel_subject['id']); ?>"
-          onclick="return confirm('Are you sure?');"
-        >Add Page</a>
+          >Delete Page</a>
 
 			</form>
 			<br />

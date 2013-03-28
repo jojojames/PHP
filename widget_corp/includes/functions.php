@@ -39,10 +39,19 @@
       "SELECT * 
       FROM subjects 
       ORDER BY position ASC";
-
       $subject_set = mysql_query($query, $connection);
       confirm_query($subject_set);
       return $subject_set;
+    }
+
+    function get_subject_id_for_position($subject_position) {
+      global $connection;
+      $query =
+      "SELECT id FROM SUBJECTS WHERE position = {$subject_position}";
+      $result_set = mysql_query($query, $connection);
+      confirm_query($result_set);
+      $result = mysql_fetch_array($result_set);
+      return $result['id'];
     }
 
     function get_pages_for_subject($subject_id) {
