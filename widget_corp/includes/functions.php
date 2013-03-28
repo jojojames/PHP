@@ -7,8 +7,9 @@
       if ($new_enough_php) { // PHP v4.3.0 or higher 
     // undo nay magic quote effects so mysql_real_escape_string can do the work
       if ($magic_quotes_active) {
-        $value = mysql_real_escape_string ($value);
+        $value = stripslashes ($value);
       } else {
+        // before PHP v4.3
         // if magic quotes aren't already on then add slashes manually
           if (!magic_quotes_active ) {
             $value = addslashes ($value); 
@@ -16,8 +17,15 @@
           }
         }
       }
+      return $value;
     }
 
+    function redirect_to($location= NULL) {
+      if ($location != NULL) {
+        header("Location: {$location}");
+        exit;
+      }
+    }
 
     function confirm_query($result_set) {
       if (!$result_set) {
@@ -102,7 +110,7 @@
         while ($subject = mysql_fetch_array($subject_set)) {
           $output .= "<li";
             if ($subject["id"] == $sel_subject['id']) { $output .= " class=\"selected\""; }
-            $output .= "><a href=\"content.php?subj=" . urlencode($subject["id"]) .
+            $output .= "><a href=\"edit_subject.php?subj=" . urlencode($subject["id"]) .
               "\">{$subject["menu_name"]}</a></li>";
 
           $page_set = get_pages_for_subject($subject["id"]);
