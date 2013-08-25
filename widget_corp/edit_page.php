@@ -7,7 +7,7 @@
 		if (isset($_POST['submit'])) {
 			$errors = array();
 
-			$required_fields = array('menu_name', 'position', 'visible');
+			$required_fields = array('menu_name', 'position', 'visible', 'content');
 			foreach($required_fields as $fieldname) {
 				if (!isset($_POST[$fieldname]) || (empty($_POST[$fieldname]) && !is_numeric($_POST[$fieldname]))) { 
 					$errors[] = $fieldname; 
@@ -26,11 +26,13 @@
 				$menu_name = mysql_prep($_POST['menu_name']);
 				$position = mysql_prep($_POST['position']);
 				$visible = mysql_prep($_POST['visible']);
+        $content = mysql_prep($_POST['content']);
 				
 				$query = "UPDATE pages SET 
 							menu_name = '{$menu_name}', 
 							position = {$position}, 
-							visible = {$visible} 
+              visible = {$visible},
+              content = '{$content}'
 						WHERE id = {$id}";
 				$result = mysql_query($query, $connection);
 				if (mysql_affected_rows() == 1) {
@@ -105,6 +107,12 @@
 					if ($sel_page['visible'] == 1) { echo " checked"; } 
 					?> /> Yes
 				</p>
+        <p>Content: <br />
+          <textarea name="content" rows="20" cols="80">
+            <?php echo $sel_page['content']; ?>
+          </textarea>
+        
+        </p>
 				<input type="submit" name="submit" value="Edit Page" />
         &nbsp;&nbsp;
 
